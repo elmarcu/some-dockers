@@ -17,6 +17,4 @@ ENV PATH="/opt/activator:${PATH}"
 RUN mkdir /root/app
 WORKDIR /root/app
 
-ENTRYPOINT "activator"
-
 EXPOSE 9000
