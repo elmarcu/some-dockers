@@ -1,0 +1,20 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  jupyter:
+    build: ./
+    volumes:
+      - ./src/:/root/app/
+    working_dir: /root/app/
+    command: jupyter notebook --no-browser --allow-root --ip 0.0.0.0 /root/app/
+    ports:
+      - 8888:8888
+    logging: *default-logging
