@@ -1,7 +1,11 @@
 FROM python:2.7
-COPY ./example/requirements.txt requirements.txt
-RUN python -m pip install pip --upgrade && \
-	pip install -r requirements.txt
-RUN apt-get autoremove -y; apt-get autoclean; apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN python -m pip install --upgrade pip
 
-CMD "python"
+RUN apt-get autoremove -y; apt-get autoclean; apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
+
+COPY ./src/requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+CMD "bash"
