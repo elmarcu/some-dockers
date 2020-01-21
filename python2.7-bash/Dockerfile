@@ -7,5 +7,3 @@ RUN apt-get autoremove -y; apt-get autoclean; apt-get clean \
 
 COPY ./src/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-
-CMD "bash"
