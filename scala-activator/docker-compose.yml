@@ -14,7 +14,8 @@ services:
     volumes:
       - ./src/:/app/
     working_dir: /app/
-    command: bash -c 'activator "run -Dconfig.file=conf/application.conf -Dconfig.log=DEBUG 9000"'
+    command: activator 'run -Dconfig.file=conf/application-dev.conf -Dconfig.log=DEBUG 9000'
+    tty: true
     ports:
       - 9000:9000
     logging: *default-logging

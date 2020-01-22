@@ -14,7 +14,4 @@ RUN mv /opt/activator-$ACTIVATOR_VERSION-minimal /opt/activator
 
 ENV PATH="/opt/activator:${PATH}"
 
-RUN mkdir /root/app
-WORKDIR /root/app
-
 EXPOSE 9000
