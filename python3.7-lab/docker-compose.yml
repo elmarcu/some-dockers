@@ -1,0 +1,20 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  lab:
+    build: ./
+    volumes:
+      - ./src/:/root/
+    working_dir: /root/
+    command: jupyter lab --no-browser --allow-root --ip 0.0.0.0 --port 8888 /root/
+    ports:
+      - 8888:8888
+    logging: *default-logging
