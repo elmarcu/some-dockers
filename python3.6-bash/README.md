@@ -1,5 +1,5 @@
 
-##Docker Python 2.7
+##Docker Python 3.6
 
 requirements.txt and files
 into src directory for testing
