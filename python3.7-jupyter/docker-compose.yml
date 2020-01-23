@@ -1,0 +1,19 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  jupyter:
+    image: jupyter/base-notebook:python-3.7.4
+    volumes:
+      - ./src/:/root/
+    working_dir: /root/
+    ports:
+      - 8888:8888
+    logging: *default-logging
