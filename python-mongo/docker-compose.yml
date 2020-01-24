@@ -1,0 +1,45 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  python:
+    build: ./
+    volumes:
+      - ./src/:/app/
+    environment:
+      - APP_MONGO_USER=${APP_MONGO_USER:-usermongo}
+      - APP_MONGO_PASS=${APP_MONGO_PASS:-mongopass1234}
+      - APP_MONGO_DB=${APP_MONGO_DB:-test}
+      - MONGO_HOST=${MONGO_HOST:-mongo}
+      - MONGO_PORT=${MONGO_PORT:-27017}
+    working_dir: /app/
+    logging: *default-logging
+    command: python app.py
+    links:
+      - mongo
+
+  mongo:
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME:-root}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-secretpass1234}
+      - MONGO_PORT=${MONGO_PORT:-27017}
+      - MONGO_ROOT_USER=${MONGO_ROOT_USERNAME:-root}
+      - MONGO_ROOT_PASS=${MONGO_ROOT_PASSWORD:-secretpass1234}
+      - APP_MONGO_USER=${APP_MONGO_USER:-usermongo}
+      - APP_MONGO_PASS=${APP_MONGO_PASS:-mongopass1234}
+      - APP_MONGO_DB=${APP_MONGO_DB:-test}
+    volumes:
+      #- ./mongo-db-files:/data/db (in case you wish to keep data on host)
+      - ./mongo-user-entrypoint.sh:/docker-entrypoint-initdb.d/mongo-user-entrypoint.sh
+    command: --auth
+    logging: *default-logging
+    ports:
+      - ${MONGO_PORT:-27017}:${MONGO_PORT:-27017}
