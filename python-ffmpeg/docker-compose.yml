@@ -1,0 +1,22 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  flask:
+    build: ./
+    volumes:
+      - ./src/:/app/
+    working_dir: /app
+    command: bash -c "export FLASK_DEBUG=0 &&
+                    export FLASK_ENV="development" &&
+                    flask run -p 80 -h 0.0.0.0"
+    logging: *default-logging
+    ports:
+      - 80:80
