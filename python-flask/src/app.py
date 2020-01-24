@@ -3,5 +3,5 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def fbwebhook_get():
+def home():
     return requests.get("http://www.google.com/?=hello world").text
