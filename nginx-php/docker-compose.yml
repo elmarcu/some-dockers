@@ -1,0 +1,32 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  proxy:
+   image: nginx:stable-alpine
+   volumes:
+    - ./public_html/:/var/www/site/
+    - ./proxy.conf:/etc/nginx/conf.d/default.conf
+   logging: *default-logging
+   links:
+    - php
+   ports:
+    - 80:80
+   extra_hosts:
+    - "local.example.com:127.0.0.1"
+    #if you wish to use
+    #grep "127.0.0.1 local.example.com" /etc/hosts || echo "127.0.0.1 local.example.com" >> /etc/hosts
+
+  php:
+   build: .
+   volumes:
+    - ./public_html/:/var/www/site/
+    - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+   logging: *default-logging
