@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  dotnet:
+    image: mcr.microsoft.com/dotnet/core/sdk:2.1
+    volumes:
+      - ./examples/samples/helloworld/:/src/
+    working_dir: /src/
+    command: >
+      bash -c "dotnet restore && dotnet run"
+    ports:
+      - 5000:5000
+      - 5001:5001
