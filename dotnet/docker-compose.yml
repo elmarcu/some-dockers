@@ -4,7 +4,7 @@ services:
   dotnet:
     image: mcr.microsoft.com/dotnet/core/sdk:2.1
     volumes:
-      - ./examples/samples/helloworld/:/src/
+      - ./example/samples/helloworld/:/src/
     working_dir: /src/
     command: >
       bash -c "dotnet restore && dotnet run"
