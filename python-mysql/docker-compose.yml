@@ -1,0 +1,33 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    command: --max_allowed_packet=67108864
+    environment:
+      MYSQL_ROOT_USER: ${MYSQL_USER:-root}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-root}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    logging: *default-logging
+
+  python:
+    build: ./
+    environment:
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+    volumes:
+      - ./src/:/app/
+    working_dir: /app/
+    command: python hello.py
+    logging: *default-logging
+    links:
+     - mysql
