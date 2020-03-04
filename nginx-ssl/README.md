@@ -6,3 +6,7 @@ openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout ./ssl/localh
 
 copy an html js php example
 into public_html directory for testing
+
+#FOR PROD USE letsencrypt
+https://letsencrypt.org/
+https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
