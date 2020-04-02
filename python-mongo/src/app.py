@@ -11,5 +11,6 @@ mongo_client = MongoClient(
             )
 
 db = mongo_client[ os.environ['APP_MONGO_DB'] ]
-collection = db[ 'test' ]
+collection = db[ 'collection1' ]
 print(collection.insert_one( {'foo' : 'bar' }))
+print(collection.find_one( {'foo':'bar' } ))

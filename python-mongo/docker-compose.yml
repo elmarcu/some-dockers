@@ -37,8 +37,8 @@ services:
       - APP_MONGO_PASS=${APP_MONGO_PASS:-mongopass1234}
       - APP_MONGO_DB=${APP_MONGO_DB:-test}
     volumes:
-      #- ./mongo-db-files:/data/db (in case you wish to keep data on host)
-      - ./mongo-user-entrypoint.sh:/docker-entrypoint-initdb.d/mongo-user-entrypoint.sh
+      #- ./db/mongo-db-files:/data/db (in case you wish to keep data on host)
+      - ./db:/docker-entrypoint-initdb.d
     command: --auth
     logging: *default-logging
     ports:
