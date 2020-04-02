@@ -1,0 +1,16 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  cron:
+    build: ./
+    environment:
+      - PYTHONUNBUFFERED=1
+    logging: *default-logging
