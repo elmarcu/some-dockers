@@ -1,0 +1,18 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  gcp-client:
+    image: google/cloud-sdk
+    volumes:
+      - ./:/app
+    working_dir: /app/
+    tty: true
+    logging: *default-logging
