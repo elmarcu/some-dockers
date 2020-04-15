@@ -11,3 +11,8 @@ services:
     ports:
       - 5000:5000
       - 5001:5001
+
+  shell:
+    image: mono:6.6
+    working_dir: /app/
+    tty: true
