@@ -11,8 +11,13 @@ services:
 
   cron:
     build: ./
+    environment:
+      - YOUR=ENVVAR
+      - STILL=HERE
     volumes:
       - ./:/app/
-    command: bash -c "sh /app/cron-env.sh &&
+    command: bash -c "(printenv | sed 's/^\(.*\)\$$/export \1/g' ) | crontab -u root - &&
+                      (crontab -u root -l; cat /app/cron-jobs ) | crontab -u root - &&
+                      touch /var/log/cron.log &&
                       cron && tail -f /var/log/cron.log"
     logging: *default-logging
