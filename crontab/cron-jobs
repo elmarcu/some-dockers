@@ -1,1 +1,2 @@
-*/1 * * * * echo "Hello World" >> /var/log/cron.log 2>&1
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+*/1 * * * * bash -c "printenv && echo 'Hello World'" >> /var/log/cron.log 2>&1

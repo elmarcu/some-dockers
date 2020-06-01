@@ -11,6 +11,8 @@ services:
 
   cron:
     build: ./
-    environment:
-      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app/
+    command: bash -c "sh /app/cron-env.sh &&
+                      cron && tail -f /var/log/cron.log"
     logging: *default-logging
