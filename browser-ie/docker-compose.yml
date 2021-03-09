@@ -1,0 +1,21 @@
+version: "3.4"
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "50M"
+    max-file: "5"
+
+services:
+
+  browser:
+    build: ./
+    working_dir: /home/apps/
+    environment:
+     - VNC_SERVER_PASSWORD=password
+    user: apps
+    privileged: true
+    logging: *default-logging
+    ports:
+     - 5900:5900

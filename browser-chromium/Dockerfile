@@ -19,7 +19,6 @@ COPY chromium.pref /etc/apt/preferences.d/chromium.pref
 
 RUN apt-get update && apt-get -y install chromium
 
-
 COPY bootstrap.sh /
 
 CMD '/bootstrap.sh'
