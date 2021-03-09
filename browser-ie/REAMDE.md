@@ -2,6 +2,7 @@
 ##Run a internetexplorer-browser (wined) through vnc to a docker container
 
 #from
+http://www.richud.com/wiki/Ubuntu_Fluxbox_GUI_with_x11vnc_and_Xvfb
 https://linuxconfig.org/install-wine-on-ubuntu-20-04-focal-fossa-linux
 https://www.linuxquestions.org/questions/mandriva-30/how-to-open-internet-explorer-in-wine-384877/
 https://appdb.winehq.org/objectManager.php?sClass=application&iId=25
