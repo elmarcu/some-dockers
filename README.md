@@ -1,6 +1,6 @@
 ## dockers
 
-These are the dockerfiles and docker-composes that were built and help me through out my work,
+These are the development docker and docker-compose yml config files that were built and help me through out my work,
 Always following the KISS* development method
 
 enjoy!
