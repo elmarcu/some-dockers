@@ -1,11 +1,12 @@
 # How to make simple Nodejs server using Typescript
-# DOCS 
-# https://medium.com/@siddharth.sabron/how-to-make-simple-nodejs-server-using-typescript-8758636e182f
-
 
 ```
+mkdir nodejs-typescript
+cd nodejs-typescript
 npm init -y
-npm install --save-dev typescript ts-node nodemon @types/node
+npm install typescript ts-node @types/node
+npm install express
+npm install @types/express --save-dev
+npx tsc --init
 
-npm run start:dev
 ```
