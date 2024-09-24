@@ -3,10 +3,12 @@
 ```
 mkdir nodejs-typescript
 cd nodejs-typescript
+
 npm init -y
 npm install typescript ts-node @types/node
 npm install express
 npm install @types/express --save-dev
 npx tsc --init
 
+docker-compose up --build
 ```
