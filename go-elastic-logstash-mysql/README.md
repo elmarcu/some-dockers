@@ -1,9 +1,8 @@
 
 # small golang wraper for fast search
 
-
-https://chatgpt.com/c/67002105-97a8-8007-8809-0da466c796b3
-
+Go Lang webserver to request and query elastic search for fast search
+this ES is feed by a logstash that pull changes from a mysqlDB
 
 components:
 
