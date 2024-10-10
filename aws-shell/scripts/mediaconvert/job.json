@@ -1,0 +1,27 @@
+{
+    "Role": "${MEDIACONVERT_ROLE_ARN}",
+    "Settings": {
+        "Inputs": [
+        {
+            "FileInput": "s3://${BUCKET_INPUT}/input/sample.mp4",
+            "AudioSelectors": {
+            "Audio Selector 1": {
+                "DefaultSelection": "DEFAULT"
+                }
+            }
+        }
+        ],
+        "OutputGroups": [
+        {
+            "Name": "HLS Group",
+            "OutputGroupSettings": {
+            "Type": "HLS_GROUP_SETTINGS",
+            "HlsGroupSettings": {
+                "Destination": "s3://${BUCKET_OUTPUT}/output/hls/"
+            }
+            }
+        }
+        ]
+    },
+    "JobTemplate": "${MEDIACONVERT_JOB_TEMPLATE}"
+}

@@ -1,21 +1,19 @@
-version: "3.4"
-
-x-logging:
-  &default-logging
-  driver: "json-file"
-  options:
-    max-size: "50M"
-    max-file: "5"
-
 services:
-
-  aws-client:
+  aws-cli:
+    #image: amazon/aws-cli:latest
     build: .
-    volumes:
-      - ./:/app
-    working_dir: /app/
     environment:
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-AWS_SECRET_ACCESS_KEY}
-    tty: true
-    logging: *default-logging
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      MEDIACONVERT_ENDPOINT: ${MEDIACONVERT_ENDPOINT}
+      MEDIACONVERT_JOB_TEMPLATE: ${MEDIACONVERT_JOB_TEMPLATE}
+      MEDIACONVERT_ROLE_ARN: ${MEDIACONVERT_ROLE_ARN}
+      CLOUDFRONT_ORIGIN_PATH: ${CLOUDFRONT_ORIGIN_PATH}
+      CLOUDFRONT_DEFAULT_ROOT_OBJECT: ${CLOUDFRONT_DEFAULT_ROOT_OBJECT}
+      BUCKET_INPUT: ${BUCKET_INPUT}
+      BUCKET_OUTPUT: ${BUCKET_OUTPUT}
+      BUCKET_DEFAULT: ${BUCKET_DEFAULT}
+    volumes:
+      - ./scripts:/scripts
+    entrypoint: ["/bin/sh", "/scripts/run.sh"]

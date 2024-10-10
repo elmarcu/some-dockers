@@ -1,10 +1,17 @@
 
-##Docker Python 3.7 with aws client shell
+##Docker aws client shell
+
+cmds -> general commands (S3, mediaconvert)
+
+mediaconvert -> transcoding mp4 from a S3 bucket
+
+cloudfront -> exposing output hls files from mediconvert to web
+
+-----
 
 docker-compose up
 docker-compose exec aws-client bash
  > aws --help
-
 
 #aws commands
 
@@ -21,15 +28,15 @@ Default output format [None]: json"
 aws s3 ls
 
 #list directories
-aws s3 ls [BUCKET_NAME]
+aws s3 ls [BUCKET_DEFAULT]
 
 #copy file
-aws s3 cp file.txt s3://[BUCKET_NAME]/ --storage-class REDUCED_REDUNDANCY/STANDARD_IA
+aws s3 cp file.txt s3://[BUCKET_DEFAULT]/ --storage-class REDUCED_REDUNDANCY/STANDARD_IA
 
 #make already existing key(file) public access
-aws s3api put-object-acl --bucket [BUCKET_NAME] --key [KEY/FILE] --acl public-read
+aws s3api put-object-acl --bucket [BUCKET_DEFAULT] --key [KEY/FILE] --acl public-read
 #cheat para hacer public varios bucket_files
-aws s3 cp s3://[BUCKET_NAME]/[PATH] s3://[BUCKET_NAME]/[PATH] --acl public-read
+aws s3 cp s3://[BUCKET_DEFAULT]/[PATH] s3://[BUCKET_DEFAULT]/[PATH] --acl public-read
 
 #Attempt sync without --delete option - nothing happens
 aws s3 sync . s3://my-bucket/path
@@ -47,10 +54,10 @@ aws s3 sync s3://my-bucket/path . --delete
 delete: MySubdirectory\MyFile3.txt
 
 #Sync with Infrequent Access storage class
-aws s3 sync . s3://[BUCKET_NAME]/[PATH] --storage-class STANDARD_IA
+aws s3 sync . s3://[BUCKET_DEFAULT]/[PATH] --storage-class STANDARD_IA
 
 #sync and public
-aws s3 sync . s3://[BUCKET_NAME]/[PATH] --acl public-read [--dryrun --include --exclude --delete]
+aws s3 sync . s3://[BUCKET_DEFAULT]/[PATH] --acl public-read [--dryrun --include --exclude --delete]
 
 #list distributions
 aws cloudfront list-distributions

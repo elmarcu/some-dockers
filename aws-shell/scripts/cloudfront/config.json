@@ -1,0 +1,38 @@
+{
+    "CallerReference": "${DATE}",
+    "Origins": {
+        "Quantity": 1,
+        "Items": [
+            {
+                "Id": "${BUCKET_OUTPUT}",
+                "DomainName": "${BUCKET_OUTPUT}.s3.amazonaws.com",
+                "OriginPath": "${CLOUDFRONT_ORIGIN_PATH}",
+                "S3OriginConfig": {
+                    "OriginAccessIdentity": ""
+                }
+            }
+        ]
+    },
+    "DefaultCacheBehavior": {
+        "TargetOriginId": "${BUCKET_OUTPUT}",
+        "ViewerProtocolPolicy": "redirect-to-https",
+        "AllowedMethods": {
+            "Quantity": 2,
+            "Items": ["GET", "HEAD"],
+            "CachedMethods": {
+                "Quantity": 2,
+                "Items": ["GET", "HEAD"]
+            }
+        },
+        "ForwardedValues": {
+            "QueryString": false,
+            "Cookies": {
+                "Forward": "none"
+            }
+        },
+        "MinTTL": 0
+    },
+    "Comment": "MediaConvert output distribution",
+    "Enabled": true,
+    "DefaultRootObject": "${CLOUDFRONT_DEFAULT_ROOT_OBJECT}"
+}

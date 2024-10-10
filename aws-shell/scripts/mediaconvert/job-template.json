@@ -1,0 +1,26 @@
+{
+  "Name": "${MEDIACONVERT_JOB_TEMPLATE}",
+  "Settings": {
+    "OutputGroups": [
+      {
+        "Name": "HLS Group",
+        "OutputGroupSettings": {
+          "Type": "HLS_GROUP_SETTINGS",
+          "HlsGroupSettings": {
+            "Destination": "s3://${BUCKET_OUTPUT}/output/hls/",
+            "SegmentLength": 10,
+            "MinSegmentLength": 5
+          }
+        },
+        "Outputs": [
+          {
+            "Preset": "System-Ott_Hls_Ts_Avc_Aac_16x9_1280x720p_30Hz_3.5Mbps",
+            "NameModifier": "_segment"
+          }
+        ]
+      }
+    ]
+  },
+  "Category": "HLS Templates",
+  "Description": "A template for HLS output from an MP4 input."
+}
