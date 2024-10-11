@@ -1,8 +1,10 @@
 #!/bin/sh
 
-#sh /scripts/storage/s3_read.sh
+#sh /scripts/storage/s3_create_buckets.sh
 #sh /scripts/storage/s3_transfer_file.sh
-sh /scripts/storage/s3_make_public.sh
+sh /scripts/storage/s3_read.sh
+#sh /scripts/storage/s3_cors.sh
+#sh /scripts/storage/s3_make_public.sh
 
 #sh /scripts/mediaconvert/mc_list_describe.sh
 #sh /scripts/mediaconvert/mc_create_template.sh

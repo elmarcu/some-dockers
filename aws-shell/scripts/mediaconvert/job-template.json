@@ -14,7 +14,7 @@
         },
         "Outputs": [
           {
-            "Preset": "System-Ott_Hls_Ts_Avc_Aac_16x9_1280x720p_30Hz_3.5Mbps",
+            "Preset": "System-Avc_16x9_1080p_29_97fps_8500kbps",
             "NameModifier": "_segment"
           }
         ]
