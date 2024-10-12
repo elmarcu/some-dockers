@@ -1,24 +1,23 @@
 {
     "CallerReference": "${DATE}",
     "Origins": {
-        "Quantity": 1,
         "Items": [
             {
                 "Id": "${BUCKET_OUTPUT}",
                 "DomainName": "${BUCKET_OUTPUT}.s3.amazonaws.com",
-                "OriginPath": "${CLOUDFRONT_ORIGIN_PATH}",
                 "S3OriginConfig": {
                     "OriginAccessIdentity": ""
                 }
             }
-        ]
+        ],
+        "Quantity": 1
     },
     "DefaultCacheBehavior": {
         "TargetOriginId": "${BUCKET_OUTPUT}",
         "ViewerProtocolPolicy": "redirect-to-https",
         "AllowedMethods": {
-            "Quantity": 2,
-            "Items": ["GET", "HEAD"],
+            "Quantity": 3,
+            "Items": ["GET", "HEAD", "OPTIONS"],
             "CachedMethods": {
                 "Quantity": 2,
                 "Items": ["GET", "HEAD"]
@@ -28,11 +27,15 @@
             "QueryString": false,
             "Cookies": {
                 "Forward": "none"
+            },
+            "Headers": {
+                "Quantity": 1,
+                "Items": ["Origin"]
             }
         },
-        "MinTTL": 0
+        "MinTTL": 0,
+        "Compress": true
     },
-    "Comment": "MediaConvert output distribution",
-    "Enabled": true,
-    "DefaultRootObject": "${CLOUDFRONT_DEFAULT_ROOT_OBJECT}"
+    "Comment": "CloudFront distribution for serving HLS files with CORS",
+    "Enabled": true
 }
