@@ -7,6 +7,10 @@ mediaconvert -> transcoding mp4 from a S3 bucket
 
 cloudfront -> exposing output hls files from mediconvert to web
 
+lambda -> fucntions to validate mediaconvert results
+
+sns -> hook mediaconvert jobs to lambda validator
+
 -----
 
 docker-compose up
