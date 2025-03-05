@@ -23,5 +23,11 @@
         }
         ]
     },
-    "JobTemplate": "${MEDIACONVERT_JOB_TEMPLATE}"
+    "JobTemplate": "${MEDIACONVERT_JOB_TEMPLATE}",
+    "Queue": "${MEDIACONVERT_QUEUE_ARN}",
+    "UserMetadata": {
+      "Customer": "TestCustomer"
+    },
+    "StatusUpdateInterval": "SECONDS_60",
+    "Priority": 0
 }
