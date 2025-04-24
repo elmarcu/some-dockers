@@ -1,0 +1,8 @@
+services:
+  spark:
+    image: bitnami/spark:latest
+    container_name: spark-container
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: ["spark-submit", "main.py"]
