@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Jupyter Notebooks (if experimenting)
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Spark/Ivy/Maven cache
+ivy2/
+.m2/
+.cache/
+target/
+
+# Docker artifacts
+*.log
+*.pid
+*.pid.lock
+*.tar
+*.bak
+*.tmp
+tmp/
+*.swp
+*.swo
+
+# Spark local logs or temp output
+spark-warehouse/
+metastore_db/
+derby.log
+
+# VSCode/JetBrains/IDE stuff
+.vscode/
+.idea/
+*.iml
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# App-specific
+app/__pycache__/
+app/*.pyc
+app/*.log
+
+# Data files you don't want committed
+app/data/*.csv
+!app/data/people.csv  # Keep sample file, ignore new ones
+
+# Docker Compose named volumes (optional)
+volumes/
